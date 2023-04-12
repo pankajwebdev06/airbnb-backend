@@ -130,7 +130,7 @@ app.post('/upload-by-link', async (req, res) => {
     res.json(url);
 });
 
-const photosMiddleware = multer({ dest: newName })
+const photosMiddleware = multer({ dest: "/upload" })
 app.post('/upload', photosMiddleware.array('photos', 100), async (req, res) => {
     mongoose.connect(process.env.MONGO_URL);
     const uploadedFiles = [];
