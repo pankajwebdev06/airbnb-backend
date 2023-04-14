@@ -11,7 +11,7 @@ const imageDownloader = require('image-downloader');
 const BookingModel = require('./models/Booking');
 const multer = require('multer');
 const fs = require('fs');
-const mime = require('mime-types');
+// const mime = require('mime-types');
 require('dotenv').config();
 const app = express();
 
@@ -19,7 +19,7 @@ const port = process.env.PORT || 4000;
 
 const bcryptSalt = bcrypt.genSaltSync(10);
 const jwtSecret = 'fghfdg343dtfdcgfc8543fygfrt565rsr56azxkhl';
-const bucket = 'pankaj-booking-app';
+// const bucket = 'pankaj-booking-app';
 
 app.use(express.json());
 app.use(cookieParser());
@@ -27,7 +27,8 @@ app.use('/uploads', express.static(__dirname + '/uploads'));
 
 app.use(cors({
     credentials: true,
-    origin: 'http://127.0.0.1:3000',
+    // origin: 'http://127.0.0.1:3000',
+    origin: 'https://pankaj-booking.netlify.app/',
 }));
 
 
@@ -130,7 +131,7 @@ app.post('/upload-by-link', async (req, res) => {
     res.json(newName);
 });
 
-const photosMiddleware = multer({ dest: "upload/" })
+const photosMiddleware = multer({ dest: "uploads/" })
 app.post('/upload', photosMiddleware.array('photos', 100), async (req, res) => {
     mongoose.connect(process.env.MONGO_URL);
     const uploadedFiles = [];
